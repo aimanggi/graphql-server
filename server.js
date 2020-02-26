@@ -9,7 +9,6 @@ const { ApolloServer, gql } = require('apollo-server-express');
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const jwt = require('jsonwebtoken');
 const db = require('mongoose');
 db.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 const PORT = process.env.PORT || 3000;
@@ -33,6 +32,10 @@ const server = new ApolloServer({
             req
         }
     },
+    uploads: {
+        maxFileSize: 10000000, // 10 MB
+        maxFiles: 20
+      },
     introspection: true,
     playground: true,
     subscriptions: {
