@@ -3,7 +3,7 @@ const DB_Schema = require('../../../../db_schema/User_Schema');
 const getUserByName = async (root, arg, context) => {
     try {
      
-        let oneUser = await DB_Schema.findOne({name: arg.name}).exec()
+        let oneUser = await DB_Schema.findOne({_id: arg.id}).exec()
         console.log('user', oneUser)
         if(oneUser){
                 return {
@@ -17,7 +17,7 @@ const getUserByName = async (root, arg, context) => {
         } else {
             return {
                 data: null,
-                error: "Name not found"
+                error: "User not found"
             }
         }
 
