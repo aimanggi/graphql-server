@@ -1,6 +1,6 @@
 const DB_Schema = require('../../../../db_schema/User_Schema');
 
-const getUserByName = async (root, arg, context) => {
+const getUser = async (root, arg, context) => {
     try {
      
         let oneUser = await DB_Schema.findOne({_id: arg.id}).exec()
@@ -32,5 +32,5 @@ const getUserByName = async (root, arg, context) => {
 }
 
 module.exports = {
-    getUserByName
+    getUser
 }

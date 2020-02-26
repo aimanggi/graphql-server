@@ -1,5 +1,7 @@
 const DB_Schema = require('../../../../db_schema/User_Schema');
 const argon2 = require('argon2');
+const jwt = require('jsonwebtoken');
+const config = require('../../../../helper/jwtConfig');
 
 const createUser = async (root, arg, context) => {
     try {
@@ -9,10 +11,14 @@ const createUser = async (root, arg, context) => {
          password = arg.password;
 
          const encryptPassword = await argon2.hash(password)
+         const token = jwt.sign({ id: arg.id }, config.secret, {
+            expiresIn: '30d'
+          });
          const insertDataToSchema = new DB_Schema({
              name,
              email,
              password: encryptPassword,
+             token,
          })
 
          const saveDataToDb = await insertDataToSchema.save()

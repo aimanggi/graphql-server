@@ -9,7 +9,6 @@ const { ApolloServer, gql } = require('apollo-server-express');
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const jwt = require('jsonwebtoken');
 const db = require('mongoose');
 db.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 const PORT = process.env.PORT || 3000;

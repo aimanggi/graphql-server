@@ -3,8 +3,8 @@ const def = `
         #get users
         getAllUsers: users
 
-        getUserByName(
-            name: String!
+        getUser(
+            id: String!
         ): userDetail
         #get article
         getAllArticles: articles
@@ -17,6 +17,11 @@ const def = `
             email: String!
             password: String!
             ): createUser
+
+        login(
+            email: String!
+            password: String!
+        ): login
  
         createArticle(
             title: String!
